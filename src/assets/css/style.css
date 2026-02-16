@@ -104,7 +104,7 @@ body {
   padding: 8px;
   border: 1px solid var(--light-gray);
   position: absolute;
-  display: none;
+  display: flex;
   flex-direction: column;
   background: var(--white);
   top: 48px;
@@ -246,6 +246,7 @@ body {
 }
 
 .card-btn-manage {
+  background: var(--white);
   height: 23px;
   aspect-ratio: 1/1;
   display: flex;

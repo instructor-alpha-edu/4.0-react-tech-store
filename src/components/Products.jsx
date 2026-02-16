@@ -1,14 +1,18 @@
 import ProductCard from "./ProductCard";
 
-export default function Products() {
+export default function Products({ products, setProducts, activeCategory }) {
   return (
     <div className="products-grid">
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      {products
+        .filter(product => product.category === activeCategory)
+        .map(product => (
+          <ProductCard
+            key={product.id}
+            currentProduct={product}
+            products={products}
+            setProducts={setProducts}
+          />
+        ))}
     </div>
   );
 }

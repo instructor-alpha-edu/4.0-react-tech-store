@@ -1,10 +1,19 @@
-export default function Categories() {
+export default function Categories({ categories, activeCategory, setActiveCategory }) {
   return (
     <ul className="categories">
-      <li className="categories-btn categories-btn__active">Ноутбуки</li>
-      <li className="categories-btn">Планшеты</li>
-      <li className="categories-btn">Смартфоны</li>
-      <li className="categories-btn">Аксессуары</li>
+      {categories.map(categoryItem => (
+        <li
+          key={categoryItem.eng}
+          className={
+            activeCategory === categoryItem.eng
+              ? "categories-btn categories-btn__active"
+              : "categories-btn"
+          }
+          onClick={() => setActiveCategory(categoryItem.eng)}
+        >
+          {categoryItem.rus}
+        </li>
+      ))}
     </ul>
   );
 }

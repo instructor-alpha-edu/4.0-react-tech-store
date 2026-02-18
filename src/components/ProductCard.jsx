@@ -1,8 +1,9 @@
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { LuPlus } from "react-icons/lu";
 import { LuMinus } from "react-icons/lu";
+import { Link } from "react-router";
 
-export default function ProductCard({ currentProduct, products, setProducts }) {
+export default function ProductCard({ currentProduct, products, setProducts, activeCategory }) {
   const { id, title, price, quantity } = currentProduct;
 
   function increase() {
@@ -30,7 +31,7 @@ export default function ProductCard({ currentProduct, products, setProducts }) {
   }
 
   return (
-    <div className="card">
+    <Link to={`/products/${activeCategory}/${id}`} className="card">
       <div className="card-img">
         <img src={currentProduct.images[0]} alt="Product Image Holder" />
       </div>
@@ -54,6 +55,6 @@ export default function ProductCard({ currentProduct, products, setProducts }) {
           </button>
         </div>
       )}
-    </div>
+    </Link>
   );
 }

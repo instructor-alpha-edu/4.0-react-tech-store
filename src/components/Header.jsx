@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import logo from "../assets/img/react.svg";
 
@@ -11,21 +12,21 @@ export default function Header({ products }) {
 
   return (
     <header className="header">
-      <div className="logo">
+      <Link to="/" className="logo">
         <img src={logo} alt="Logo" className="logo-img" />
         <div className="logo-body">
           <h1 className="logo-text">ReactTechShop</h1>
           <span className="logo-span">Учебный пример онлайн-магазина</span>
         </div>
-      </div>
+      </Link>
       <div className="cart">
-        <div className="cart-btn" onClick={handleClickToggleCart}>
+        <Link to="/cart" className="cart-btn">
           <div className="cart-btn-item">
             <HiOutlineShoppingCart />
           </div>
           <div className="cart-btn-item">|</div>
           <div className="cart-btn-item">{products.length}</div>
-        </div>
+        </Link>
         {cartIsOpen ? (
           <div className="cart-list">
             <div className="cart-item cart-header">

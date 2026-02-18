@@ -60,6 +60,7 @@ body {
   font-size: 24px;
   line-height: 24px;
   font-weight: 600;
+  color: var(--black);
 }
 
 .logo-span {
@@ -282,4 +283,51 @@ body {
 
 .error {
   color: rgb(180, 34, 34);
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 16px 24px;
+}
+
+.categories-card {
+  border-radius: 24px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--light-gray);
+  color: var(--black);
+  cursor: pointer;
+}
+
+.page {
+  margin-top: 64px;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.breadcrumbs-item {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--gray);
+}
+
+.breadcrumbs-item__active {
+  color: var(--blue);
+}
+
+.breadcrumbs-divider {
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 700;
+  color: var(--black);
 }

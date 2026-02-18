@@ -16,4 +16,12 @@ export const categories = [
     eng: "mobile-accessories",
     rus: "Аксессуары",
   },
+  {
+    eng: "motorcycle",
+    rus: "Мотоциклы",
+  },
+  {
+    eng: "vehicle",
+    rus: "Автомобили",
+  },
 ];

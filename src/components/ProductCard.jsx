@@ -3,7 +3,7 @@ import { LuPlus } from "react-icons/lu";
 import { LuMinus } from "react-icons/lu";
 
 export default function ProductCard({ currentProduct, products, setProducts }) {
-  const { id, title, price, imageUrl, quantity } = currentProduct;
+  const { id, title, price, quantity } = currentProduct;
 
   function increase() {
     const updatedProducts = products.map(item => {
@@ -32,7 +32,7 @@ export default function ProductCard({ currentProduct, products, setProducts }) {
   return (
     <div className="card">
       <div className="card-img">
-        <img src={imageUrl} alt="Product Image Holder" />
+        <img src={currentProduct.images[0]} alt="Product Image Holder" />
       </div>
       <h4 className="card-title">{title}</h4>
       <div className="card-price">

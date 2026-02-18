@@ -260,3 +260,26 @@ body {
   opacity: 0.9;
   cursor: pointer;
 }
+/* Loader */
+.loader {
+  width: 100px;
+  height: 100px;
+  border: 10px solid var(--blue);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader-container {
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  color: rgb(180, 34, 34);
+}

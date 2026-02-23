@@ -10,7 +10,7 @@ export default function Breadcrumbs({ breadcrumbsConfig }) {
               {item.title}
             </Link>
           ) : (
-            <p className="breadcrumbs-item">{item.title}</p>
+            <p className="breadcrumbs-item breadcrumbs-item__current">{item.title}</p>
           )}
           {index < breadcrumbsConfig.length - 1 ? (
             <span className="breadcrumbs-divider">{"/"}</span>

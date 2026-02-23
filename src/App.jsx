@@ -5,8 +5,8 @@ import { products as initialProducts } from "./data/products";
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
 import CartPage from "./pages/CartPage";
-import "./assets/css/style.css";
 import SingleProductPage from "./pages/SingleProductPage";
+import "./assets/css/style.css";
 
 export default function App() {
   const [products, setProducts] = useState(

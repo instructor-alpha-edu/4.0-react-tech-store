@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
+import Breadcrumbs from "../components/Breadcrumbs";
+import { categories } from "../data/categories";
 
 export default function ProductsPage() {
   const { category } = useParams();
@@ -27,33 +29,44 @@ export default function ProductsPage() {
 
   if (isLoading) {
     return (
-      <div className="app">
-        <div className="loader-container">
-          <span class="loader"></span>
-        </div>
+      <div className="loader-container">
+        <span className="loader"></span>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="app">
-        <p className="error">{error}</p>
-      </div>
+      <p className="error">{error}</p>
     );
   }
 
+  const breadcrumbsConfig = [
+    {
+      title: "Все категории",
+      isLink: true,
+      route: "/",
+    },
+    {
+      title: categories.find(item => item.eng === category).rus,
+      isLink: false,
+    },
+  ];
+
   return (
-    <div className="products-grid">
-      {products.map(product => (
-        <ProductCard
-          key={product.id}
-          currentProduct={product}
-          products={products}
-          setProducts={setProducts}
-          activeCategory={category}
-        />
-      ))}
+    <div>
+      <Breadcrumbs breadcrumbsConfig={breadcrumbsConfig} />
+      <div className="products-grid">
+        {products.map(product => (
+          <ProductCard
+            key={product.id}
+            currentProduct={product}
+            products={products}
+            setProducts={setProducts}
+            activeCategory={category}
+          />
+        ))}
+      </div>
     </div>
   );
 }

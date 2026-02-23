@@ -55,9 +55,32 @@ export default function SingleProductPage() {
   return (
     <div>
       <Breadcrumbs breadcrumbsConfig={breadcrumbsConfig} />
-      <div>Название товара: {currentProduct.title}</div>
-      <div>Цена товара: {currentProduct.price}$</div>
-      <div>Оценка товара: {currentProduct.rating}/5.0</div>
+      <div className="product-page">
+        <div className="product-page__image">
+          <img src={currentProduct.thumbnail} alt={currentProduct.title} />
+        </div>
+        <div className="product-page__info">
+          <h1 className="product-page__title">{currentProduct.title}</h1>
+          {currentProduct.brand && (
+            <p className="product-page__brand">{currentProduct.brand}</p>
+          )}
+          <p className="product-page__description">{currentProduct.description}</p>
+          <div className="product-page__price">
+            <span>{currentProduct.price}$</span>
+            {currentProduct.discountPercentage > 0 && (
+              <span className="product-page__discount">-{currentProduct.discountPercentage}%</span>
+            )}
+          </div>
+          <div className="product-page__rating">Рейтинг: {currentProduct.rating}/5.0</div>
+          <div className="product-page__details">
+            <div>Наличие: {currentProduct.availabilityStatus}</div>
+            <div>На складе: {currentProduct.stock} шт.</div>
+            <div>Гарантия: {currentProduct.warrantyInformation}</div>
+            <div>Доставка: {currentProduct.shippingInformation}</div>
+            <div>Возврат: {currentProduct.returnPolicy}</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

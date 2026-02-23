@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import axios from "axios";
+import { axiosInstance } from "../services/axios";
 import ProductCard from "../components/ProductCard";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { categories } from "../data/categories";
 
-export default function ProductsPage() {
+export default function ProductsPage({ increase, decrease, productsInCart }) {
   const { category } = useParams();
 
   const [products, setProducts] = useState([]);
@@ -16,8 +16,8 @@ export default function ProductsPage() {
     async function fetchProductsByCategory() {
       try {
         setIsLoading(true);
-        const res = await axios.get("https://dummyjson.com/products/category/" + category);
-        setProducts(res.data.products.map(item => ({ ...item, quantity: 0 })));
+        const res = await axiosInstance.get("/products/category/" + category);
+        setProducts(res.data.products);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -36,9 +36,7 @@ export default function ProductsPage() {
   }
 
   if (error) {
-    return (
-      <p className="error">{error}</p>
-    );
+    return <p className="error">{error}</p>;
   }
 
   const breadcrumbsConfig = [
@@ -61,9 +59,10 @@ export default function ProductsPage() {
           <ProductCard
             key={product.id}
             currentProduct={product}
-            products={products}
-            setProducts={setProducts}
             activeCategory={category}
+            increase={increase}
+            decrease={decrease}
+            productsInCart={productsInCart}
           />
         ))}
       </div>

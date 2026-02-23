@@ -1,11 +1,4 @@
-import { products } from "../data/products";
-
-const mockCartItems = products.slice(0, 3).map((item, i) => ({
-  ...item,
-  quantity: [1, 2, 1][i],
-}));
-
-export default function CartPage() {
+export default function CartPage({ productsInCart }) {
   return (
     <div className="cart-page">
       <h2 className="cart-page__title">Корзина</h2>
@@ -15,7 +8,7 @@ export default function CartPage() {
         <div>Кол-во</div>
         <div>Общая сумма</div>
       </div>
-      {mockCartItems.map(item => (
+      {productsInCart.map(item => (
         <div className="cart-item" key={item.id}>
           <div>
             <img src={item.imageUrl} className="cart-item-img" alt={item.title} />

@@ -3,35 +3,19 @@ import { LuPlus } from "react-icons/lu";
 import { LuMinus } from "react-icons/lu";
 import { Link } from "react-router";
 
-export default function ProductCard({ currentProduct, products, setProducts, activeCategory }) {
-  const { id, title, price, quantity } = currentProduct;
-
-  function increase() {
-    const updatedProducts = products.map(item => {
-      if (item.id === id) {
-        return { ...item, quantity: item.quantity + 1 };
-      }
-
-      return item;
-    });
-
-    setProducts(updatedProducts);
-  }
-
-  function decrease() {
-    const updatedProducts = products.map(item => {
-      if (item.id === id) {
-        return { ...item, quantity: item.quantity - 1 };
-      }
-
-      return item;
-    });
-
-    setProducts(updatedProducts);
-  }
+export default function ProductCard({
+  currentProduct,
+  activeCategory,
+  increase,
+  decrease,
+  productsInCart,
+}) {
+  const { id, title, price } = currentProduct;
+  const currentProductInCart = productsInCart.find(item => item.id === id);
+  const quantity = currentProductInCart ? currentProductInCart.quantity : 0;
 
   return (
-    <Link to={`/products/${activeCategory}/${id}`} className="card">
+    <div className="card">
       <div className="card-img">
         <img src={currentProduct.images[0]} alt="Product Image Holder" />
       </div>
@@ -40,21 +24,24 @@ export default function ProductCard({ currentProduct, products, setProducts, act
         <span>{price}$</span>
       </div>
       {quantity === 0 ? (
-        <button className="card-add-btn" onClick={increase}>
+        <button className="card-add-btn" onClick={() => increase(id, currentProduct)}>
           <HiOutlineShoppingCart />
           Добавить в корзину
         </button>
       ) : (
         <div className="card-btn">
-          <button className="card-btn-manage" onClick={decrease}>
+          <button className="card-btn-manage" onClick={() => decrease(id)}>
             <LuMinus />
           </button>
           <div className="card-btn-count">{quantity}</div>
-          <button className="card-btn-manage" onClick={increase}>
+          <button className="card-btn-manage" onClick={() => increase(id, currentProduct)}>
             <LuPlus />
           </button>
         </div>
       )}
-    </Link>
+      <Link className="card-btn card-open-btn" to={`/products/${activeCategory}/${id}`}>
+        Открыть
+      </Link>
+    </div>
   );
 }

@@ -254,6 +254,14 @@ body {
   align-items: center;
 }
 
+.card-open-btn {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+}
+
 .card-btn-manage {
   background: var(--white);
   height: 23px;

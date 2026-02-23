@@ -7,7 +7,6 @@ export const categories = [
     eng: "tablets",
     rus: "Планшеты",
   },
-
   {
     eng: "smartphones",
     rus: "Смартфоны",

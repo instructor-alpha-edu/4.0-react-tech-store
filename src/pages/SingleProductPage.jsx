@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { axiosInstance } from "../services/axios";
 import { categories } from "../data/categories";
 import Breadcrumbs from "../components/Breadcrumbs";
 
@@ -13,9 +14,7 @@ export default function SingleProductPage() {
     async function fetchSingleProduct(productId) {
       try {
         setIsLoading(true);
-        const response = await fetch("https://dummyjson.com/products/" + productId);
-        const data = await response.json();
-        console.log(data);
+        const { data } = await axiosInstance.get("/products/" + productId);
         setCurrentProduct(data);
       } catch (error) {
         console.log(error);
@@ -61,9 +60,7 @@ export default function SingleProductPage() {
         </div>
         <div className="product-page__info">
           <h1 className="product-page__title">{currentProduct.title}</h1>
-          {currentProduct.brand && (
-            <p className="product-page__brand">{currentProduct.brand}</p>
-          )}
+          {currentProduct.brand && <p className="product-page__brand">{currentProduct.brand}</p>}
           <p className="product-page__description">{currentProduct.description}</p>
           <div className="product-page__price">
             <span>{currentProduct.price}$</span>
